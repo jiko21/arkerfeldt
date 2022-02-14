@@ -1,0 +1,16 @@
+{
+  "name": "arkerfeldt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jiko21 <sos.daiki.keion@gmail.com> (https://jiko21.me/)",
+  "license": "MIT",
+  "workspaces": [
+    "packages/frontend",
+    "packages/api",
+    "packages/public-api"
+  ]
+}
