@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  displayName: String!
+  photoUrl: String!
+  posts: [Post!]
+}
+
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  isDelete: Boolean!
+  status: String!
+  author: User!
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+type Query {
+  postById(id: Float!): Post
+  feed: [Post!]
+}
