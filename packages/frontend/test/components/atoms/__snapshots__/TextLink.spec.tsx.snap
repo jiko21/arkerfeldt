@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextLink.tsx should correctly render 1`] = `
+.emotion-0 {
+  color: #007AAE;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+<div>
+  <a
+    class="emotion-0"
+  >
+    Sample
+  </a>
+</div>
+`;

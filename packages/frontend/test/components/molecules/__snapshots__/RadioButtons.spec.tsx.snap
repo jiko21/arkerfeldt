@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckBox.tsx should correctly render (checked: true) 1`] = `
+.emotion-0 input {
+  display: none;
+}
+
+.emotion-0 input+label {
+  color: #6A6A6A;
+  padding-left: 20px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.emotion-0 input+label:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #2d2d2d;
+  border-radius: 50%;
+}
+
+.emotion-0 input:checked+label {
+  color: #007AAE;
+  font-weight: 700;
+}
+
+.emotion-0 input:checked+label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: #007AAE;
+  border-radius: 50%;
+}
+
+.emotion-1 {
+  margin-left: 12px;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <input
+      checked=""
+      data-testid="radio-btn-すべて"
+      id="すべて"
+      name="status"
+      type="radio"
+      value="すべて"
+    />
+    <label
+      class="emotion-1"
+      for="すべて"
+    >
+      すべて
+    </label>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <input
+      data-testid="radio-btn-公開中"
+      id="公開中"
+      name="status"
+      type="radio"
+      value="公開中"
+    />
+    <label
+      class="emotion-1"
+      for="公開中"
+    >
+      公開中
+    </label>
+  </div>
+  <div
+    class="emotion-0"
+  >
+    <input
+      data-testid="radio-btn-未公開"
+      id="未公開"
+      name="status"
+      type="radio"
+      value="未公開"
+    />
+    <label
+      class="emotion-1"
+      for="未公開"
+    >
+      未公開
+    </label>
+  </div>
+</div>
+`;

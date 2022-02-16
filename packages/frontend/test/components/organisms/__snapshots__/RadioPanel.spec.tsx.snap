@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioPanel.tsx should correctly close panels with apply 1`] = `
+.emotion-0 {
+  background-color: #F0F0F0;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #007AAE;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-0:hover {
+  background-color: #d1d1d1;
+}
+
+<div>
+  <button
+    class="emotion-0"
+    data-testid="open-btn"
+  >
+    status: 
+    すべて
+  </button>
+</div>
+`;
+
+exports[`RadioPanel.tsx should correctly close panels with cancel 1`] = `
+.emotion-0 {
+  background-color: #F0F0F0;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #007AAE;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-0:hover {
+  background-color: #d1d1d1;
+}
+
+<div>
+  <button
+    class="emotion-0"
+    data-testid="open-btn"
+  >
+    status: 
+    すべて
+  </button>
+</div>
+`;
+
+exports[`RadioPanel.tsx should correctly open panels 1`] = `
+.emotion-0 {
+  background-color: #F0F0F0;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #007AAE;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-0:hover {
+  background-color: #d1d1d1;
+}
+
+.emotion-1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #F0F0F0;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 180px;
+  -webkit-box-pack: space-around;
+  -ms-flex-pack: space-around;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  width: 240px;
+  position: absolute;
+  top: 12px;
+}
+
+.emotion-1 span {
+  color: #2d2d2d;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 176px;
+}
+
+.emotion-3 input {
+  display: none;
+}
+
+.emotion-3 input+label {
+  color: #6A6A6A;
+  padding-left: 20px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.emotion-3 input+label:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #2d2d2d;
+  border-radius: 50%;
+}
+
+.emotion-3 input:checked+label {
+  color: #007AAE;
+  font-weight: 700;
+}
+
+.emotion-3 input:checked+label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: #007AAE;
+  border-radius: 50%;
+}
+
+.emotion-4 {
+  margin-left: 12px;
+}
+
+.emotion-9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  width: 176px;
+}
+
+.emotion-10 {
+  background-color: #F0F0F0;
+  border: 2px solid #007AAE;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #007AAE;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-10:hover {
+  background-color: #d1d1d1;
+}
+
+.emotion-11 {
+  background-color: #007AAE;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-11:hover {
+  background-color: #005b82;
+}
+
+<div>
+  <button
+    class="emotion-0"
+    data-testid="open-btn"
+  >
+    status: 
+    すべて
+  </button>
+  <div
+    class="emotion-1"
+  >
+    <span>
+      配信ステータス
+    </span>
+    <div
+      class="emotion-2"
+    >
+      <div
+        class="emotion-3"
+      >
+        <input
+          checked=""
+          data-testid="radio-btn-すべて"
+          id="すべて"
+          name="status"
+          type="radio"
+          value="すべて"
+        />
+        <label
+          class="emotion-4"
+          for="すべて"
+        >
+          すべて
+        </label>
+      </div>
+      <div
+        class="emotion-3"
+      >
+        <input
+          data-testid="radio-btn-公開中"
+          id="公開中"
+          name="status"
+          type="radio"
+          value="公開中"
+        />
+        <label
+          class="emotion-4"
+          for="公開中"
+        >
+          公開中
+        </label>
+      </div>
+      <div
+        class="emotion-3"
+      >
+        <input
+          data-testid="radio-btn-未公開"
+          id="未公開"
+          name="status"
+          type="radio"
+          value="未公開"
+        />
+        <label
+          class="emotion-4"
+          for="未公開"
+        >
+          未公開
+        </label>
+      </div>
+    </div>
+    <div
+      class="emotion-9"
+    >
+      <button
+        class="emotion-10"
+        data-testid="cancel-btn"
+      >
+        キャンセル
+      </button>
+      <button
+        class="emotion-11"
+        data-testid="enable-btn"
+      >
+        選択
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RadioPanel.tsx should correctly render 1`] = `
+.emotion-0 {
+  background-color: #F0F0F0;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #007AAE;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-0:hover {
+  background-color: #d1d1d1;
+}
+
+<div>
+  <button
+    class="emotion-0"
+    data-testid="open-btn"
+  >
+    status: 
+    すべて
+  </button>
+</div>
+`;

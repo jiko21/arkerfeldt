@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextForm.tsx should correctly render 1`] = `
+.emotion-0 {
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  height: 30px;
+  min-width: 240px;
+  width: 100%;
+}
+
+.emotion-0::-webkit-input-placeholder {
+  color: #878686;
+}
+
+.emotion-0::-moz-placeholder {
+  color: #878686;
+}
+
+.emotion-0:-ms-input-placeholder {
+  color: #878686;
+}
+
+.emotion-0::placeholder {
+  color: #878686;
+}
+
+<div>
+  <input
+    class="emotion-0"
+    type="email"
+    value="sample"
+  />
+</div>
+`;
+
+exports[`TextForm.tsx should correctly render when text is not empty 1`] = `
+.emotion-0 {
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
+  height: 30px;
+  min-width: 240px;
+  width: 100%;
+}
+
+.emotion-0::-webkit-input-placeholder {
+  color: #878686;
+}
+
+.emotion-0::-moz-placeholder {
+  color: #878686;
+}
+
+.emotion-0:-ms-input-placeholder {
+  color: #878686;
+}
+
+.emotion-0::placeholder {
+  color: #878686;
+}
+
+<div>
+  <input
+    class="emotion-0"
+    type="email"
+    value="sample"
+  />
+</div>
+`;

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CancelButton.tsx should correctly render 1`] = `
+.emotion-0 {
+  background-color: #F0F0F0;
+  border: 2px solid #007AAE;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #007AAE;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 80px;
+}
+
+.emotion-0:hover {
+  background-color: #d1d1d1;
+}
+
+<div>
+  <button
+    class="emotion-0"
+  >
+    Sample
+  </button>
+</div>
+`;

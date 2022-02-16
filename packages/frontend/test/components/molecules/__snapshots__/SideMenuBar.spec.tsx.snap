@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideMenuBar.tsx should correctly render 1`] = `
+.emotion-0 {
+  background-color: #2d2d2d;
+  height: 100vh;
+  position: -webkit-sticky;
+  position: sticky;
+  width: 240px;
+  padding: 210px 0 0 0;
+}
+
+.emotion-0 * {
+  list-style-type: none;
+}
+
+.emotion-1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  height: 48px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #878686;
+}
+
+.emotion-1:hover {
+  background-color: #878686;
+}
+
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  height: 48px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-2:hover {
+  background-color: #878686;
+}
+
+<div>
+  <ul
+    class="emotion-0"
+  >
+    <li
+      class="emotion-1"
+    >
+      Post
+    </li>
+    <li
+      class="emotion-2"
+    >
+      Layout
+    </li>
+    <li
+      class="emotion-2"
+    >
+      User
+    </li>
+  </ul>
+</div>
+`;

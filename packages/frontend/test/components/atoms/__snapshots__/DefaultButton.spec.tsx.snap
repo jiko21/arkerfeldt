@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultButton.tsx should correctly render 1`] = `
+.emotion-0 {
+  background-color: #2d2d2d;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  height: 30px;
+  min-width: 240px;
+  width: 100%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.emotion-0:hover {
+  -webkit-transform: translateY(-4px);
+  -moz-transform: translateY(-4px);
+  -ms-transform: translateY(-4px);
+  transform: translateY(-4px);
+}
+
+<div>
+  <button
+    class="emotion-0"
+  >
+    Sample
+  </button>
+</div>
+`;

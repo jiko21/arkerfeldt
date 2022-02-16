@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckBox.tsx should correctly render (checked: false) 1`] = `
+.emotion-0 input {
+  display: none;
+}
+
+.emotion-0 input+label:before {
+  border: 2px solid;
+  border-color: #2d2d2d;
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+
+.emotion-0 input:checked+label:after {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  width: 18px;
+  height: 9px;
+  margin-top: -9px;
+  top: 28px;
+  left: 20px;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  border-color: #007AAE;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <input
+      readonly=""
+      type="checkbox"
+    />
+    <label />
+  </div>
+</div>
+`;
+
+exports[`CheckBox.tsx should correctly render (checked: true) 1`] = `
+.emotion-0 input {
+  display: none;
+}
+
+.emotion-0 input+label:before {
+  border: 2px solid;
+  border-color: #2d2d2d;
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+
+.emotion-0 input:checked+label:after {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  width: 18px;
+  height: 9px;
+  margin-top: -9px;
+  top: 28px;
+  left: 20px;
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+  border-color: #007AAE;
+  position: absolute;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    <input
+      checked=""
+      readonly=""
+      type="checkbox"
+    />
+    <label />
+  </div>
+</div>
+`;
