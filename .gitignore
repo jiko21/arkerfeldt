@@ -1,0 +1,11 @@
+node_modules/
+.idea/
+packages/**/*.env
+packages/**/.idea/
+packages/**/coverage/
+packages/**/node_modules/
+packages/api/arkerfeldt-firebase-adminsdk.json
+packages/frontend/.next
+packages/frontend/storybook-static/
+packages/**/.swc
+packages/api/src/generated/client/query-*
