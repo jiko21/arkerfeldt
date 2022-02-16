@@ -1,0 +1,42 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "lint": "eslint -c .eslintrc.json --fix ./**/*.ts",
+    "test": "jest --config jest.config.json --coverage",
+    "doc:generate": "swagger-cli bundle -o ./swagger/index.yaml -t yaml ./swagger/api.yaml",
+    "prisma:generate": "prisma generate"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "src(.*)$": "<rootDir>/src/$1"
+    }
+  },
+  "author": "jiko21 <sos.daiki.keion@gmail.com> (https://jiko21.me)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.2",
+    "firebase-admin": "^9.4.1",
+    "swagger-combine": "^1.4.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.4",
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "4.17.13",
+    "@types/supertest": "2.0.11",
+    "jest-environment-node": "^27.5.0",
+    "jest-mock-extended": "^2.0.4",
+    "js-yaml": "^4.1.0",
+    "nanoid": "^3.2.0",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
+  }
+}
