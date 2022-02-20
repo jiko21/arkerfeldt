@@ -109,6 +109,7 @@ describe('userUsecase.ts', () => {
     it('correctly calls when user not exists', async () => {
       const uid = 'aaa';
       const post = {
+        id: 1,
         title: 'A',
         content: 'AAA',
         status: PublishStatus.PUBLISHED,
@@ -126,6 +127,7 @@ describe('userUsecase.ts', () => {
     it('fails when error occured in createPost', async () => {
       const uid = 'aaa';
       const post = {
+        id: 1,
         title: 'A',
         content: 'AAA',
         status: PublishStatus.PUBLISHED,
