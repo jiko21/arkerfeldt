@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm run dev --workspace=packages/api & npm run dev --workspace=packages/frontend & npm run dev --workspace=packages/public-api",
     "lint": "npm run lint -ws",
+    "prisma:generate": "npm run prisma:generate --workspace=packages/api --workspace=packages/public-api",
     "test": "npm run test -ws"
   },
   "author": "jiko21 <sos.daiki.keion@gmail.com> (https://jiko21.me/)",

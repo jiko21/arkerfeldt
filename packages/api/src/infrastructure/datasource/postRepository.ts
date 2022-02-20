@@ -1,6 +1,6 @@
 import { Post, Prisma } from '@prisma/client';
 import { PostFilterParam } from '../../types/Post';
-import { prismaClient } from './client';
+import prismaClient from './client';
 import PostCreateInput = Prisma.PostCreateInput;
 import PostUpdateInput = Prisma.PostUpdateInput;
 

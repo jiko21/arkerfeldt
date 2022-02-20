@@ -7,6 +7,7 @@ import CheckBox from '@/components/atoms/CheckBox';
 import StatusText from '@/components/atoms/StatusText';
 import TextLink from '@/components/atoms/TextLink';
 import { Post } from '@/const/post';
+import { formatDate } from '@/libs/date';
 
 const wrapperStyle = css`
   align-items: center;
@@ -64,7 +65,7 @@ const PostItem: React.FC<Props> = ({ checked, onChecked, link, post }) => (
             margin-left: 10px;
           `}
         >
-          Last modified {post.updatedAt.toLocaleString()}
+          Last modified {formatDate(post.updatedAt)}
         </span>
       </div>
     </div>

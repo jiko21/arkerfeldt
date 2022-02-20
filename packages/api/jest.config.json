@@ -13,6 +13,7 @@
   "testMatch": [
     "**/test/**/*.spec.ts"
   ],
+  "setupFilesAfterEnv": ["<rootDir>/test_client.ts"],
   "moduleDirectories": [
     "node_modules",
     "src"

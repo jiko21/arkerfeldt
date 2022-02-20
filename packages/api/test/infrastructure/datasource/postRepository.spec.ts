@@ -1,4 +1,3 @@
-import { prismaClient } from '../../../src/infrastructure/datasource/client';
 import {
   findPostById,
   findPosts,
@@ -6,31 +5,10 @@ import {
   updatePost,
 } from '../../../src/infrastructure/datasource/postRepository';
 import { PublishStatus } from '../../../src/types/Post';
-
-jest.mock('../../../src/infrastructure/datasource/client', () => ({
-  prismaClient: {
-    post: {
-      findFirst: jest.fn(),
-      findMany: jest.fn(),
-    },
-  },
-}));
+import { prismaMock } from '../../../test_client';
 
 describe('postRepository.ts', () => {
   describe('findPostById', () => {
-    let findOneMock: jest.Mock;
-
-    beforeEach(() => {
-      const post = {};
-      Object.defineProperty(prismaClient, 'post', post);
-      findOneMock = jest.fn();
-      prismaClient.post.findFirst = findOneMock;
-    });
-
-    afterEach(() => {
-      findOneMock.mockClear();
-    });
-
     it('correctly calls when post exists', async () => {
       const ID = 1;
       const EXPECTED = {
@@ -41,16 +19,12 @@ describe('postRepository.ts', () => {
         updatedAt: new Date('2020-12-12 12:00:00'),
         isDelete: false,
         status: PublishStatus.PUBLISHED,
-        author: {
-          uid: 'aaa',
-          displayName: 'taro',
-          photoUrl: 'aaa',
-        },
+        authorId: 'aaa',
       };
-      findOneMock.mockReturnValueOnce(EXPECTED);
+      prismaMock.post.findFirst.mockResolvedValue(EXPECTED);
       const actual = await findPostById(ID);
       expect(actual).toBe(EXPECTED);
-      expect(findOneMock).toBeCalledWith({
+      expect(prismaMock.post.findFirst).toBeCalledWith({
         where: {
           id: ID,
         },
@@ -60,10 +34,10 @@ describe('postRepository.ts', () => {
 
     it('correctly calls when user not exists', async () => {
       const ID = 1;
-      findOneMock.mockReturnValueOnce(null);
+      prismaMock.post.findFirst.mockResolvedValue(null);
       const actual = await findPostById(ID);
       expect(actual).toBe(null);
-      expect(findOneMock).toBeCalledWith({
+      expect(prismaMock.post.findFirst).toBeCalledWith({
         where: {
           id: ID,
         },
@@ -73,11 +47,11 @@ describe('postRepository.ts', () => {
 
     it('fails when error occurred', async () => {
       const ID = 1;
-      findOneMock.mockRejectedValue({ msg: 'error' });
+      prismaMock.post.findFirst.mockRejectedValue({ msg: 'error' });
       try {
         await findPostById(ID);
       } catch (e) {
-        expect(findOneMock).toBeCalledWith({
+        expect(prismaMock.post.findFirst).toBeCalledWith({
           where: {
             id: ID,
           },
@@ -88,17 +62,6 @@ describe('postRepository.ts', () => {
   });
 
   describe('findPosts', () => {
-    let findManyMock: jest.Mock;
-
-    beforeEach(() => {
-      findManyMock = jest.fn();
-      prismaClient.post.findMany = findManyMock;
-    });
-
-    afterEach(() => {
-      findManyMock.mockClear();
-    });
-
     it('correctly calls when post exists', async () => {
       const params = {
         title: 'a',
@@ -113,16 +76,12 @@ describe('postRepository.ts', () => {
         updatedAt: new Date('2020-12-12 12:00:00'),
         isDelete: false,
         status: PublishStatus.PUBLISHED,
-        author: {
-          uid: 'aaa',
-          displayName: 'taro',
-          photoUrl: 'aaa',
-        },
+        authorId: 'aaa',
       };
-      findManyMock.mockReturnValueOnce([EXPECTED]);
+      prismaMock.post.findMany.mockResolvedValue([EXPECTED]);
       const actual = await findPosts(params);
       expect(actual).toEqual([EXPECTED]);
-      expect(findManyMock).toBeCalledWith({
+      expect(prismaMock.post.findMany).toBeCalledWith({
         where: {
           AND: [
             {
@@ -145,10 +104,10 @@ describe('postRepository.ts', () => {
         title: 'a',
         status: PublishStatus.PUBLISHED,
       };
-      findManyMock.mockReturnValueOnce(null);
+      prismaMock.post.findMany.mockResolvedValue([]);
       const actual = await findPosts(params);
-      expect(actual).toBe(null);
-      expect(findManyMock).toBeCalledWith({
+      expect(actual).toEqual([]);
+      expect(prismaMock.post.findMany).toBeCalledWith({
         where: {
           AND: [
             {
@@ -172,11 +131,11 @@ describe('postRepository.ts', () => {
         status: PublishStatus.PUBLISHED,
       };
 
-      findManyMock.mockRejectedValue({ msg: 'error' });
+      prismaMock.post.findMany.mockRejectedValue({ msg: 'error' });
       try {
         await findPosts(params);
       } catch (e) {
-        expect(findManyMock).toBeCalledWith({
+        expect(prismaMock.post.findMany).toBeCalledWith({
           where: {
             AND: [
               {
@@ -197,17 +156,6 @@ describe('postRepository.ts', () => {
   });
 
   describe('createPost', () => {
-    let createPostMock: jest.Mock;
-
-    beforeEach(() => {
-      createPostMock = jest.fn();
-      prismaClient.post.create = createPostMock;
-    });
-
-    afterEach(() => {
-      createPostMock.mockClear();
-    });
-
     it('correctly calls when post successfully created', async () => {
       const POST = {
         id: 1,
@@ -223,9 +171,9 @@ describe('postRepository.ts', () => {
           },
         },
       };
-      createPostMock.mockReturnValueOnce({});
+      // prismaMock.post.create.mockResolvedValue({} as any);
       await createPost(POST);
-      expect(createPostMock).toBeCalledWith({
+      expect(prismaMock.post.create).toBeCalledWith({
         data: POST,
       });
     });
@@ -245,11 +193,11 @@ describe('postRepository.ts', () => {
           },
         },
       };
-      createPostMock.mockRejectedValue({ msg: 'error' });
+      prismaMock.post.create.mockRejectedValue({ msg: 'error' });
       try {
         await createPost(POST);
       } catch (e) {
-        expect(createPostMock).toBeCalledWith({
+        expect(prismaMock.post.create).toBeCalledWith({
           data: POST,
         });
       }
@@ -257,17 +205,6 @@ describe('postRepository.ts', () => {
   });
 
   describe('updatePost', () => {
-    let updatePostMock: jest.Mock;
-
-    beforeEach(() => {
-      updatePostMock = jest.fn();
-      prismaClient.post.update = updatePostMock;
-    });
-
-    afterEach(() => {
-      updatePostMock.mockClear();
-    });
-
     it('correctly calls when post successfully update', async () => {
       const ID = 1;
       const postUpdateInput = {
@@ -275,9 +212,9 @@ describe('postRepository.ts', () => {
         content: 'AAA',
         status: PublishStatus.PUBLISHED,
       };
-      updatePostMock.mockReturnValueOnce({});
+      // prismaMock.post.update.mockResolvedValue({} as any);
       await updatePost(ID, postUpdateInput);
-      expect(updatePostMock).toBeCalledWith({
+      expect(prismaMock.post.update).toBeCalledWith({
         where: { id: ID },
         data: {
           ...postUpdateInput,
@@ -292,11 +229,11 @@ describe('postRepository.ts', () => {
         content: 'AAA',
         status: PublishStatus.PUBLISHED,
       };
-      updatePostMock.mockRejectedValue({ msg: 'error' });
+      prismaMock.post.update.mockRejectedValue({ msg: 'error' });
       try {
         await updatePost(ID, postUpdateInput);
       } catch (e) {
-        expect(updatePostMock).toBeCalledWith({
+        expect(prismaMock.post.update).toBeCalledWith({
           where: { id: ID },
           data: {
             ...postUpdateInput,

@@ -152,7 +152,7 @@ exports[`PostItem.tsx should correctly render (checked: false) 1`] = `
           class="emotion-6"
         >
           Last modified 
-          2020/12/11 10:00:00
+          2020/12/11 10:00
         </span>
       </div>
     </div>
@@ -325,7 +325,7 @@ exports[`PostItem.tsx should correctly render (checked: true) 1`] = `
           class="emotion-6"
         >
           Last modified 
-          2020/12/11 10:00:00
+          2020/12/11 10:00
         </span>
       </div>
     </div>

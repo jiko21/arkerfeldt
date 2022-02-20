@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { prismaClient } from './client';
+import prismaClient from './client';
 
 export const findUserByUid = async (uid: string): Promise<User | null> => {
   return await prismaClient.user.findFirst({

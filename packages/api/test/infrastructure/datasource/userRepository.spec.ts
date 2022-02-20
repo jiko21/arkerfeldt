@@ -1,29 +1,8 @@
-import { prismaClient } from '../../../src/infrastructure/datasource/client';
 import { createUser, findUserByUid } from '../../../src/infrastructure/datasource/userRepository';
-jest.mock('../../../src/infrastructure/datasource/client');
-
-jest.mock('../../../src/infrastructure/datasource/client', () => ({
-  prismaClient: {
-    user: {
-      findFirst: jest.fn(),
-      create: jest.fn(),
-    },
-  },
-}));
+import { prismaMock } from '../../../test_client';
 
 describe('userRepository.ts', () => {
   describe('findUserByUid', () => {
-    let findFirstMock: jest.Mock;
-
-    beforeEach(() => {
-      findFirstMock = jest.fn();
-      prismaClient.user.findFirst = findFirstMock;
-    });
-
-    afterEach(() => {
-      findFirstMock.mockClear();
-    });
-
     it('correctly calls when user exists', async () => {
       const UID = 'abc';
       const EXPECTED = {
@@ -31,10 +10,10 @@ describe('userRepository.ts', () => {
         displayName: 'taro',
         photoUrl: 'aaa',
       };
-      findFirstMock.mockReturnValueOnce(EXPECTED);
+      prismaMock.user.findFirst.mockResolvedValue(EXPECTED);
       const actual = await findUserByUid(UID);
       expect(actual).toBe(EXPECTED);
-      expect(findFirstMock).toBeCalledWith({
+      expect(prismaMock.user.findFirst).toBeCalledWith({
         where: {
           uid: UID,
         },
@@ -43,10 +22,10 @@ describe('userRepository.ts', () => {
 
     it('correctly calls when user not exists', async () => {
       const UID = 'abc';
-      findFirstMock.mockReturnValueOnce(null);
+      prismaMock.user.findFirst.mockResolvedValue(null);
       const actual = await findUserByUid(UID);
       expect(actual).toBe(null);
-      expect(findFirstMock).toBeCalledWith({
+      expect(prismaMock.user.findFirst).toBeCalledWith({
         where: {
           uid: UID,
         },
@@ -55,11 +34,11 @@ describe('userRepository.ts', () => {
 
     it('fails when error occured', async () => {
       const UID = 'abc';
-      findFirstMock.mockRejectedValue({ msg: 'error' });
+      prismaMock.user.findFirst.mockRejectedValue({ msg: 'error' });
       try {
         await findUserByUid(UID);
       } catch (e) {
-        expect(findFirstMock).toBeCalledWith({
+        expect(prismaMock.user.findFirst).toBeCalledWith({
           where: {
             uid: UID,
           },
@@ -69,26 +48,15 @@ describe('userRepository.ts', () => {
   });
 
   describe('createUser', () => {
-    let createUserMock: jest.Mock;
-
-    beforeEach(() => {
-      createUserMock = jest.fn();
-      prismaClient.user.create = createUserMock;
-    });
-
-    afterEach(() => {
-      createUserMock.mockClear();
-    });
-
     it('correctly calls when user successfully created', async () => {
       const USER = {
         uid: 'aaa',
         displayName: 'taro',
         photoUrl: 'aaa',
       };
-      createUserMock.mockReturnValueOnce({});
+      // prismaMock.user.create.mockResolvedValue({});
       await createUser(USER);
-      expect(createUserMock).toBeCalledWith({
+      expect(prismaMock.user.create).toBeCalledWith({
         data: USER,
       });
     });
@@ -99,11 +67,11 @@ describe('userRepository.ts', () => {
         displayName: 'taro',
         photoUrl: 'aaa',
       };
-      createUserMock.mockRejectedValue({ msg: 'error' });
+      prismaMock.user.create.mockRejectedValue({ msg: 'error' });
       try {
         await createUser(USER);
       } catch (e) {
-        expect(createUserMock).toBeCalledWith({
+        expect(prismaMock.user.create).toBeCalledWith({
           data: USER,
         });
       }
