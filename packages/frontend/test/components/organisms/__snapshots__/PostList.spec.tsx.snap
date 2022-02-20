@@ -164,7 +164,7 @@ exports[`PostList.spec.tsx should correctly render 1`] = `
               class="emotion-7"
             >
               Last modified 
-              12/11/2020, 10:00:00 AM
+              2020/12/11 10:00:00
             </span>
           </div>
         </div>
@@ -222,7 +222,7 @@ exports[`PostList.spec.tsx should correctly render 1`] = `
               class="emotion-7"
             >
               Last modified 
-              12/11/2020, 10:00:00 AM
+              2020/12/11 10:00:00
             </span>
           </div>
         </div>
