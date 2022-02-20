@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run dev --workspace=packages/api & npm run dev --workspace=packages/frontend & npm run dev --workspace=packages/public-api",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npm run lint -ws",
+    "test": "npm run test -ws"
   },
   "author": "jiko21 <sos.daiki.keion@gmail.com> (https://jiko21.me/)",
   "license": "MIT",
