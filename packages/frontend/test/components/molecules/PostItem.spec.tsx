@@ -54,7 +54,7 @@ describe('PostItem.tsx', () => {
         },
       },
     };
-    const { container } = render(<PostItem {...props} />);;
+    const { container } = render(<PostItem {...props} />);
 
     expect(container).toMatchSnapshot();
   });
