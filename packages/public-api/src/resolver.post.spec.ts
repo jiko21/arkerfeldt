@@ -1,11 +1,10 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { PrismaService } from "./prisma/prisma.service";
-import { PostResolver } from "./resolver.post";
-import { mockDeep } from "jest-mock-extended";
-import { AppModule } from "./app.module";
+import { Test, TestingModule } from '@nestjs/testing';
+import { PrismaService } from './prisma/prisma.service';
+import { PostResolver } from './resolver.post';
+import { mockDeep } from 'jest-mock-extended';
+import { AppModule } from './app.module';
 
-
-describe("resolver.post", () => {
+describe('resolver.post', () => {
   let resolver: PostResolver;
   let service: PrismaService;
 
@@ -21,27 +20,27 @@ describe("resolver.post", () => {
     service = module.get<PrismaService>(PrismaService);
   });
 
-  test("should be defined", () => {
+  test('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  test("postById query should be find one item with published item by id", async () => {
+  test('postById query should be find one item with published item by id', async () => {
     await resolver.postById(1);
     expect(service.post.findFirst).toBeCalledWith({
       where: {
-        status: "PUBLISHED",
+        status: 'PUBLISHED',
         id: 1,
-      }
+      },
     });
   });
 
-  test("feed query should be find many with published item", async () => {
+  test('feed query should be find many with published item', async () => {
     await resolver.feed();
     expect(service.post.findMany).toBeCalledWith({
       where: {
-        status: "PUBLISHED",
-        isDelete: false
-      }
+        status: 'PUBLISHED',
+        isDelete: false,
+      },
     });
   });
 });
