@@ -42,7 +42,7 @@
     "@storybook/addon-links": "^6.4.19",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
-    "@swc/core": "^1.2.136",
+    "@swc/core": "^1.2.161",
     "@swc/jest": "^0.2.17",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
