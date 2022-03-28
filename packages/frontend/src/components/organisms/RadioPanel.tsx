@@ -6,6 +6,7 @@ import { Color } from '@/const/color';
 import CancelButton from '@/components/atoms/CancelButton';
 import EnableButton from '@/components/atoms/EnableButton';
 import RadioButtons from '@/components/molecules/RadioButtons';
+import { Hover } from '@/const/style';
 
 const buttonStyle = css`
   background-color: ${Color.DISABLE};
@@ -16,6 +17,7 @@ const buttonStyle = css`
   font-weight: 700;
   height: 30px;
   min-width: 80px;
+
   &:hover {
     background-color: ${Color.DISABLE_HOVER};
   }
@@ -26,7 +28,7 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({ onClick, children }) => (
-  <button css={buttonStyle} onClick={onClick} data-testid="open-btn">
+  <button css={buttonStyle} onClick={onClick} data-testid='open-btn'>
     {children}
   </button>
 );
@@ -41,7 +43,6 @@ const containerStyle = css`
   justify-content: space-around;
   width: 240px;
   position: absolute;
-  top: 12px;
   span {
     color: ${Color.BLACK};
     font-size: 14px;
@@ -81,9 +82,12 @@ const RadioPanel: FC<Props> = ({ onApply, items, value }) => {
   const [radioValue, updateRadioValue] = useState(value);
 
   return (
-    <>
+    <div css={css`
+      z-index: ${Hover.TOP};
+    `}>
       <Button onClick={onOpen}>status: {value}</Button>
       {isPanelOpen && (
+
         <div css={containerStyle}>
           <span>配信ステータス</span>
           <div css={buttonForm}>
@@ -95,11 +99,11 @@ const RadioPanel: FC<Props> = ({ onApply, items, value }) => {
             />
           </div>
           <div css={buttonWrapper}>
-            <CancelButton onClick={closePanel} testId="cancel-btn">
+            <CancelButton onClick={closePanel} testId='cancel-btn'>
               キャンセル
             </CancelButton>
             <EnableButton
-              testId="enable-btn"
+              testId='enable-btn'
               onClick={() => {
                 closePanel();
                 onApply(radioValue);
@@ -110,7 +114,7 @@ const RadioPanel: FC<Props> = ({ onApply, items, value }) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
