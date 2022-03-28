@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import React from 'react';
 import SideMenuBar from '@/components/molecules/SideMenuBar';
-import { MenuItem } from '@/types/MenuItem';
+import { menuItems } from '@/const/menu';
 
 const topWrapper = css`
   padding: 0;
@@ -17,15 +17,11 @@ const wrapperStyle = css`
   width: 100%;
 `;
 
-type Props = {
-  menuItems: MenuItem[];
-};
-
-const MenuTemplate: React.FC<Props> = ({ children, menuItems }) => (
+const MenuTemplate: React.FC = ({ children }) => (
   <div css={topWrapper}>
     <SideMenuBar menuItems={menuItems} />
     <div css={wrapperStyle}>{children}</div>
   </div>
 );
 
-export default React.memo(MenuTemplate);
+export default MenuTemplate;

@@ -30,6 +30,10 @@ exports[`PostList.spec.tsx should correctly render 1`] = `
   padding: 20px;
 }
 
+.emotion-2 {
+  position: relative;
+}
+
 .emotion-2 input {
   display: none;
 }
@@ -51,8 +55,8 @@ exports[`PostList.spec.tsx should correctly render 1`] = `
   width: 18px;
   height: 9px;
   margin-top: -9px;
-  top: 28px;
-  left: 20px;
+  top: 13px;
+  left: 4px;
   border-bottom: 3px solid;
   border-left: 3px solid;
   border-color: #007AAE;
