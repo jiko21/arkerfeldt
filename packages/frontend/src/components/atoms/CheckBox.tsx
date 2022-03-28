@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Color } from '@/const/color';
 
 const checkBoxStyle = css`
+  position: relative;
   input {
     display: none;
   }
@@ -17,6 +18,7 @@ const checkBoxStyle = css`
     height: 24px;
     width: 24px;
   }
+
   input:checked + label:after {
     box-sizing: border-box;
     content: '';
@@ -24,8 +26,8 @@ const checkBoxStyle = css`
     width: 18px;
     height: 9px;
     margin-top: -9px;
-    top: 28px;
-    left: 20px;
+    top: 13px;
+    left: 4px;
     border-bottom: 3px solid;
     border-left: 3px solid;
     border-color: ${Color.ENABLE};
@@ -42,7 +44,7 @@ interface IProps {
 
 const CheckBox: React.FC<IProps> = ({ checked, onClick, testId }) => (
   <div css={checkBoxStyle}>
-    <input type="checkbox" checked={checked} readOnly />
+    <input type='checkbox' checked={checked} readOnly />
     <label
       data-testid={testId}
       onClick={() => {
