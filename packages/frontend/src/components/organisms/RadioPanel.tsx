@@ -29,7 +29,7 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({ onClick, children }) => (
-  <button css={buttonStyle} onClick={onClick} data-testid='open-btn'>
+  <button css={buttonStyle} onClick={onClick} data-testid="open-btn">
     {children}
   </button>
 );
@@ -83,11 +83,11 @@ const RadioPanelForm: FC<{
         />
       </div>
       <div css={buttonWrapper}>
-        <CancelButton onClick={toggle} testId='cancel-btn'>
+        <CancelButton onClick={toggle} testId="cancel-btn">
           キャンセル
         </CancelButton>
         <EnableButton
-          testId='enable-btn'
+          testId="enable-btn"
           onClick={() => {
             toggle();
             onApply(radioValue);
@@ -111,11 +111,21 @@ const RadioPanel: FC<Props> = ({ onApply, items, value }) => {
   const { isOpen, toggle } = usePanel(ref);
 
   return (
-    <div ref={ref} css={css`
-      z-index: ${Hover.TOP};
-    `}>
+    <div
+      ref={ref}
+      css={css`
+        z-index: ${Hover.TOP};
+      `}
+    >
       <Button onClick={toggle}>status: {value}</Button>
-      {isOpen && (<RadioPanelForm onApply={onApply} toggle={toggle} items={items} value={value} />)}
+      {isOpen && (
+        <RadioPanelForm
+          onApply={onApply}
+          toggle={toggle}
+          items={items}
+          value={value}
+        />
+      )}
     </div>
   );
 };

@@ -44,7 +44,7 @@ interface IProps {
 
 const CheckBox: React.FC<IProps> = ({ checked, onClick, testId }) => (
   <div css={checkBoxStyle}>
-    <input type='checkbox' checked={checked} readOnly />
+    <input type="checkbox" checked={checked} readOnly />
     <label
       data-testid={testId}
       onClick={() => {

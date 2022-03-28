@@ -19,11 +19,11 @@ import { getRequest } from '@/service/api';
 const PanelStyle = css`
   display: flex;
 
-  >* {
+  > * {
     margin-right: 20px;
   }
 
-  >*:last-child {
+  > *:last-child {
     margin: 0 0 0 auto;
   }
 `;
@@ -43,7 +43,7 @@ const Posts = () => {
     <>
       <Head>
         <title>Arkerfeldt CMS</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuTemplate>
         <>
@@ -62,7 +62,11 @@ const Posts = () => {
               Create Post
             </EnableButton>
           </div>
-          {isLoading  ? <h1>loading</h1> : data && <PostList posts={data.posts} />}
+          {isLoading ? (
+            <h1>loading</h1>
+          ) : (
+            data && <PostList posts={data.posts} />
+          )}
         </>
       </MenuTemplate>
     </>

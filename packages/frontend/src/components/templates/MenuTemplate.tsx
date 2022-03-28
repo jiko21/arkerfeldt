@@ -17,7 +17,6 @@ const wrapperStyle = css`
   width: 100%;
 `;
 
-
 const MenuTemplate: React.FC = ({ children }) => (
   <div css={topWrapper}>
     <SideMenuBar menuItems={menuItems} />
