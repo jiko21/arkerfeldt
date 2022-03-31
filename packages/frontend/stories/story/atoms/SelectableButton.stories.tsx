@@ -11,13 +11,10 @@ export default {
 const Template: Story<React.ComponentProps<typeof SelectableButton>> = (
   args,
 ) => {
-  const [text, updateText] = useState('未公開のまま保存');
+  const [text, updateText] = useState('UNPUBLISHED');
   return (
     <SelectableButton
       {...args}
-      onItemClick={(item) => {
-        updateText(item.text);
-      }}
     >
       {text}
     </SelectableButton>
@@ -26,17 +23,13 @@ const Template: Story<React.ComponentProps<typeof SelectableButton>> = (
 
 export const Sample1 = Template.bind({});
 Sample1.args = {
-  candidates: [
-    {
-      text: '未公開のまま保存',
-      value: 'UNPUBLISHED',
-    },
-    {
-      text: '公開する',
-      value: 'PUBLISH',
-    },
-  ],
-  onClick: () => {
+  candidates: {
+    'UNPUBLISHED': '未公開のまま保存',
+    'PUBLISH': '公開する'
+
+  },
+  onSubmit: () => {
     console.log('onClick');
   },
+  initValue: 'UNPUBLISHED'
 };
