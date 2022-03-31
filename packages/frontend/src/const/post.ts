@@ -25,7 +25,6 @@ export type PostInputType = {
   status: PublishStatus;
 };
 
-
 export const candidates: { [key in PublishStatus]: string } = {
   [PublishStatus.UNPUBLISHED]: '未公開のまま保存',
   [PublishStatus.PUBLISHED]: '公開する',
