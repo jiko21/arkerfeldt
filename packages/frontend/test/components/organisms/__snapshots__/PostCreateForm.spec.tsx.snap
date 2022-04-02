@@ -30,6 +30,8 @@ exports[`PostCreateForm.tsx should correctly change input 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  max-height: 700px;
+  margin-bottom: 24px;
 }
 
 .emotion-2 {
@@ -55,7 +57,8 @@ exports[`PostCreateForm.tsx should correctly change input 1`] = `
 }
 
 .emotion-3 {
-  padding: 0 24px;
+  overflow-x: scroll;
+  margin: 0 12px;
   width: 100%;
 }
 
@@ -232,6 +235,8 @@ exports[`PostCreateForm.tsx should correctly render 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  max-height: 700px;
+  margin-bottom: 24px;
 }
 
 .emotion-2 {
@@ -257,7 +262,8 @@ exports[`PostCreateForm.tsx should correctly render 1`] = `
 }
 
 .emotion-3 {
-  padding: 0 24px;
+  overflow-x: scroll;
+  margin: 0 12px;
   width: 100%;
 }
 
