@@ -17,17 +17,16 @@ const Create: React.FC = () => {
     try {
       await createPost(postInput);
       router.push('/posts');
-    } catch (e) {
-    }
+    } catch (e) {}
   };
   return (
     <>
       <Head>
         <title>Arkerfeldt CMS</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuTemplate>
-        <PostCreateForm submit={onSubmit}/>
+        <PostCreateForm submit={onSubmit} />
       </MenuTemplate>
     </>
   );

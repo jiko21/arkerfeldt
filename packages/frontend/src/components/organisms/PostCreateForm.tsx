@@ -10,6 +10,8 @@ import TextForm from '@/components/atoms/TextForm';
 
 const Container = styled.div`
   display: flex;
+  max-height: 700px;
+  margin-bottom: 24px;
 `;
 
 const BottomContainer = styled.div`
@@ -17,7 +19,8 @@ const BottomContainer = styled.div`
 `;
 
 const DisplayedText = styled.div`
-  padding: 0 24px;
+  overflow-x: scroll;
+  margin: 0 12px;
   width: 100%;
 `;
 

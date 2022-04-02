@@ -9,6 +9,7 @@ const ulStyle = css`
   height: 100vh;
   position: sticky;
   width: 240px;
+  margin: 0;
   padding: 210px 0 0 0;
   * {
     list-style-type: none;
