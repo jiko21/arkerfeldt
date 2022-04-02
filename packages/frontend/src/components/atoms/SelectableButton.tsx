@@ -117,7 +117,7 @@ const SelectableButton = <T extends string | symbol>({
               key={item}
               data-testid={`candidate-${item}`}
             >
-              {item}
+              {candidates[item as T]}
             </li>
           ))}
         </Ul>

@@ -28,12 +28,12 @@ describe('SelectableButton.tsx', () => {
     );
 
     fireEvent.click(screen.getByTestId('button-tapped'));
-    expect(screen.getByText('未公開のまま保存')).toBeTruthy();
+    expect(screen.getAllByText('未公開のまま保存').length).toBe(2)
     expect(screen.queryByTestId('selectable-area')).toBeTruthy();
     expect(container).toMatchSnapshot();
 
     Object.values(candidates).forEach((item) => {
-      expect(screen.getByText(item)).toBeTruthy();
+      expect(screen.getAllByText(item)).toBeTruthy();
     });
   });
 

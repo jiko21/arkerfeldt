@@ -226,13 +226,13 @@ exports[`SelectableButton.tsx should correctly render when list is open 1`] = `
         class="emotion-4"
         data-testid="candidate-UNPUBLISHED"
       >
-        UNPUBLISHED
+        未公開のまま保存
       </li>
       <li
         class="emotion-4"
         data-testid="candidate-PUBLISHED"
       >
-        PUBLISHED
+        公開する
       </li>
     </ul>
   </div>
