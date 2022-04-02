@@ -14,6 +14,10 @@ const inputStyle = css`
   }
 `;
 
-type Props = React.ComponentProps<'textarea'>;
+type Props = React.ComponentProps<'textarea'> & {
+  testId?: string;
+};
 
-export const TextArea: React.FC<Props> = (props: Props) => <textarea css={inputStyle} {...props} />;
+export const TextArea: React.FC<Props> = ({ testId, ...props }) => (
+  <textarea css={inputStyle} data-testid={testId} {...props} />
+);
