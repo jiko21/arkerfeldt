@@ -93,7 +93,7 @@ exports[`SelectableButton.tsx should correctly render when list is closed 1`] = 
         class="emotion-2"
         data-testid="button-area"
       >
-        Sample
+        未公開のまま保存
       </div>
     </button>
   </div>
@@ -214,7 +214,7 @@ exports[`SelectableButton.tsx should correctly render when list is open 1`] = `
         class="emotion-2"
         data-testid="button-area"
       >
-        Sample
+        未公開のまま保存
       </div>
     </button>
     <ul
@@ -230,7 +230,7 @@ exports[`SelectableButton.tsx should correctly render when list is open 1`] = `
       </li>
       <li
         class="emotion-4"
-        data-testid="candidate-PUBLISH"
+        data-testid="candidate-PUBLISHED"
       >
         公開する
       </li>

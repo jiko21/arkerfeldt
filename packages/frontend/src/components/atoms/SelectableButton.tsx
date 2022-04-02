@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { FC, useRef, useState } from 'react';
+import { FC, useMemo, useRef, useState } from 'react';
 import { Color } from '@/const/color';
 import styled from '@emotion/styled';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -61,23 +61,25 @@ const listStyle = css`
   }
 `;
 
-type Candidate = {
-  text: string;
-  value: string;
+type Candidate<T extends string | symbol> = {
+  [key in T]: string;
 };
 
-type Props = {
-  onClick: () => void;
-  onItemClick: (candidate: Candidate) => void;
-  candidates: Candidate[];
+type Props<T extends string | symbol> = {
+  onSubmit: (value: T) => void;
+  candidates: Candidate<T>;
+  initValue: T;
 };
 
-const SelectableButton: FC<Props> = ({
-  onClick,
-  onItemClick,
-  children,
+const SelectableButton = <T extends string | symbol>({
+  onSubmit,
+  initValue,
   candidates,
-}) => {
+}: Props<T>) => {
+  const [value, setValue] = useState(initValue);
+
+  const selectedValue = useMemo(() => candidates[value], [value]);
+
   const [isSelect, changeSelectStatus] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   return (
@@ -92,8 +94,12 @@ const SelectableButton: FC<Props> = ({
         >
           <FontAwesomeIcon icon={isSelect ? faChevronUp : faChevronDown} />
         </span>
-        <div css={childWrapper} onClick={onClick} data-testid="button-area">
-          {children}
+        <div
+          css={childWrapper}
+          onClick={() => onSubmit(value)}
+          data-testid="button-area"
+        >
+          {selectedValue}
         </div>
       </button>
       {isSelect && (
@@ -101,17 +107,17 @@ const SelectableButton: FC<Props> = ({
           width={buttonRef.current ? buttonRef.current.offsetWidth : undefined}
           data-testid="selectable-area"
         >
-          {candidates.map((item) => (
+          {Object.keys(candidates).map((item) => (
             <li
               css={listStyle}
               onClick={() => {
-                onItemClick(item);
-                changeSelectStatus(!isSelect);
+                setValue(item as T);
+                changeSelectStatus(false);
               }}
-              key={item.value}
-              data-testid={`candidate-${item.value}`}
+              key={item}
+              data-testid={`candidate-${item}`}
             >
-              {item.text}
+              {candidates[item as T]}
             </li>
           ))}
         </Ul>

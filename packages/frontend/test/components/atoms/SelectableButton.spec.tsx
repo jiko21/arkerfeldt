@@ -1,32 +1,19 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import SelectableButton from '@/components/atoms/SelectableButton';
+import { candidates, PublishStatus } from '@/const/post';
 
 describe('SelectableButton.tsx', () => {
-  const onClickMock = jest.fn();
-  const onItemClickMock = jest.fn();
-
-  const CANDIDATES = [
-    {
-      text: '未公開のまま保存',
-      value: 'UNPUBLISHED',
-    },
-    {
-      text: '公開する',
-      value: 'PUBLISH',
-    },
-  ];
+  const onSubmitMock = jest.fn();
 
   it('should correctly render when list is closed', () => {
     const { container } = render(
       <SelectableButton
-        onClick={onClickMock}
-        onItemClick={onItemClickMock}
-        candidates={CANDIDATES}
-      >
-        Sample
-      </SelectableButton>,
+        onSubmit={onSubmitMock}
+        candidates={candidates}
+        initValue={PublishStatus.UNPUBLISHED}
+      />,
     );
-    expect(screen.getByText('Sample')).toBeTruthy();
+    expect(screen.getByText('未公開のまま保存')).toBeTruthy();
     expect(screen.queryByTestId('selectable-area')).toBeFalsy();
     expect(container).toMatchSnapshot();
   });
@@ -34,54 +21,47 @@ describe('SelectableButton.tsx', () => {
   it('should correctly render when list is open', () => {
     const { container } = render(
       <SelectableButton
-        onClick={onClickMock}
-        onItemClick={onItemClickMock}
-        candidates={CANDIDATES}
-      >
-        Sample
-      </SelectableButton>,
+        onSubmit={onSubmitMock}
+        candidates={candidates}
+        initValue={PublishStatus.UNPUBLISHED}
+      />,
     );
 
     fireEvent.click(screen.getByTestId('button-tapped'));
-    expect(screen.getByText('Sample')).toBeTruthy();
+    expect(screen.getAllByText('未公開のまま保存').length).toBe(2)
     expect(screen.queryByTestId('selectable-area')).toBeTruthy();
     expect(container).toMatchSnapshot();
 
-    CANDIDATES.forEach((item) => {
-      expect(screen.getByText(item.text)).toBeTruthy();
+    Object.values(candidates).forEach((item) => {
+      expect(screen.getAllByText(item)).toBeTruthy();
     });
   });
 
   it('should correctly call `onItemClick`', () => {
     render(
       <SelectableButton
-        onClick={onClickMock}
-        onItemClick={onItemClickMock}
-        candidates={CANDIDATES}
-      >
-        Sample
-      </SelectableButton>,
+        onSubmit={onSubmitMock}
+        candidates={candidates}
+        initValue={PublishStatus.UNPUBLISHED}
+      />,
     );
 
     fireEvent.click(screen.getByTestId('button-tapped'));
-    fireEvent.click(screen.getByTestId('candidate-PUBLISH'));
-
-    expect(onItemClickMock).toBeCalled();
+    fireEvent.click(screen.getByTestId('candidate-PUBLISHED'));
+    expect(screen.getByText('公開する')).toBeTruthy();
   });
 
   it('should correctly call `onClick`', () => {
     render(
       <SelectableButton
-        onClick={onClickMock}
-        onItemClick={onItemClickMock}
-        candidates={CANDIDATES}
-      >
-        Sample
-      </SelectableButton>,
+        onSubmit={onSubmitMock}
+        candidates={candidates}
+        initValue={PublishStatus.UNPUBLISHED}
+      />,
     );
 
     fireEvent.click(screen.getByTestId('button-area'));
 
-    expect(onClickMock).toBeCalled();
+    expect(onSubmitMock).toBeCalled();
   });
 });
