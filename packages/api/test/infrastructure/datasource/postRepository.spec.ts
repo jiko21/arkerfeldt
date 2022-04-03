@@ -22,10 +22,11 @@ describe('postRepository.ts', () => {
         authorId: 'aaa',
       };
       prismaMock.post.findFirst.mockResolvedValue(EXPECTED);
-      const actual = await findPostById(ID);
+      const actual = await findPostById(ID, 'UID');
       expect(actual).toBe(EXPECTED);
       expect(prismaMock.post.findFirst).toBeCalledWith({
         where: {
+          authorId: 'UID',
           id: ID,
         },
         include: { author: true },
@@ -35,10 +36,11 @@ describe('postRepository.ts', () => {
     it('correctly calls when user not exists', async () => {
       const ID = 1;
       prismaMock.post.findFirst.mockResolvedValue(null);
-      const actual = await findPostById(ID);
+      const actual = await findPostById(ID, 'UID');
       expect(actual).toBe(null);
       expect(prismaMock.post.findFirst).toBeCalledWith({
         where: {
+          authorId: 'UID',
           id: ID,
         },
         include: { author: true },
@@ -49,10 +51,11 @@ describe('postRepository.ts', () => {
       const ID = 1;
       prismaMock.post.findFirst.mockRejectedValue({ msg: 'error' });
       try {
-        await findPostById(ID);
+        await findPostById(ID,  'UID');
       } catch (e) {
         expect(prismaMock.post.findFirst).toBeCalledWith({
           where: {
+            authorId: 'UID',
             id: ID,
           },
           include: { author: true },

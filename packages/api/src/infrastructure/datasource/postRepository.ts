@@ -4,9 +4,10 @@ import prismaClient from './client';
 import PostCreateInput = Prisma.PostCreateInput;
 import PostUpdateInput = Prisma.PostUpdateInput;
 
-export const findPostById = async (id: number): Promise<Post | null> => {
+export const findPostById = async (id: number, authorId: string): Promise<Post | null> => {
   return await prismaClient.post.findFirst({
     where: {
+      authorId: authorId,
       id: id,
     },
     include: { author: true },

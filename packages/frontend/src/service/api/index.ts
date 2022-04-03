@@ -15,3 +15,10 @@ export const postRequest = async <RequestParams, ReturnType>(
   config?: AxiosRequestConfig<RequestParams>,
 ): Promise<AxiosResponse<ReturnType>> =>
   await client.post(path, params, config);
+
+export const putRequest = async <RequestParams, ReturnType>(
+  path: string,
+  params?: RequestParams,
+  config?: AxiosRequestConfig<RequestParams>,
+): Promise<AxiosResponse<ReturnType>> =>
+  await client.put(path, params, config);
