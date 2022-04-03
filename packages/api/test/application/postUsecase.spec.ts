@@ -71,8 +71,8 @@ describe('userUsecase.ts', () => {
         status: PublishStatus.PUBLISHED,
       };
       jest.spyOn(postRepository, 'findPosts').mockResolvedValueOnce([post]);
-      const rslt = await findPosts(params);
-      expect(postRepository.findPosts).toBeCalledWith(params);
+      const rslt = await findPosts('uid', params);
+      expect(postRepository.findPosts).toBeCalledWith('uid', params);
       expect(rslt).toEqual([post]);
     });
 
@@ -82,8 +82,8 @@ describe('userUsecase.ts', () => {
         status: PublishStatus.PUBLISHED,
       };
       jest.spyOn(postRepository, 'findPosts').mockResolvedValueOnce([]);
-      const rslt = await findPosts(params);
-      expect(postRepository.findPosts).toBeCalledWith(params);
+      const rslt = await findPosts('uid', params);
+      expect(postRepository.findPosts).toBeCalledWith('uid', params);
       expect(rslt).toEqual([]);
     });
 
@@ -94,9 +94,9 @@ describe('userUsecase.ts', () => {
       };
       jest.spyOn(postRepository, 'findPosts').mockRejectedValueOnce({ msg: 'error' });
       try {
-        await findPosts(params);
+        await findPosts('uid', params);
       } catch (e) {
-        expect(postRepository.findPosts).toBeCalledWith(params);
+        expect(postRepository.findPosts).toBeCalledWith('uid', params);
       }
     });
   });
@@ -159,8 +159,8 @@ describe('userUsecase.ts', () => {
         status: PublishStatus.PUBLISHED,
       };
       jest.spyOn(postRepository, 'updatePost').mockResolvedValueOnce();
-      await updatePost(ID, postUpdateInput);
-      expect(postRepository.updatePost).toBeCalledWith(ID, postUpdateInput);
+      await updatePost(ID, 'uid', postUpdateInput);
+      expect(postRepository.updatePost).toBeCalledWith(ID, 'uid', postUpdateInput);
     });
 
     it('fails when error occured in createUser', async () => {
@@ -172,9 +172,9 @@ describe('userUsecase.ts', () => {
       };
       jest.spyOn(postRepository, 'updatePost').mockRejectedValue({});
       try {
-        await updatePost(ID, postUpdateInput);
+        await updatePost(ID, 'uid', postUpdateInput);
       } catch (e) {
-        expect(postRepository.updatePost).toBeCalledWith(ID, postUpdateInput);
+        expect(postRepository.updatePost).toBeCalledWith(ID, 'uid', postUpdateInput);
       }
     });
   });

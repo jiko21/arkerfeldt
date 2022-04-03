@@ -57,7 +57,7 @@ describe('postHandler.ts', () => {
       ];
       findPostsSpy.mockResolvedValueOnce(expected);
       await getPosts(req, res);
-      expect(findPostsSpy).toBeCalledWith(PARAMS);
+      expect(findPostsSpy).toBeCalledWith(UID, PARAMS);
       expect(res.json).toBeCalledWith({
         total: expected.length,
         posts: expected,
@@ -77,7 +77,7 @@ describe('postHandler.ts', () => {
       (req as InnerRequest).uid = UID;
       findPostsSpy.mockRejectedValue(null);
       await getPosts(req, res);
-      expect(findPostsSpy).toBeCalledWith(PARAMS);
+      expect(findPostsSpy).toBeCalledWith(UID, PARAMS);
       expect(res.status).toBeCalledWith(500);
       expect(res.json).toBeCalledWith({
         msg: 'internal_server_error',
@@ -237,7 +237,7 @@ describe('postHandler.ts', () => {
       (req as InnerRequest).uid = UID;
       updatePostSpy.mockResolvedValueOnce();
       await putPost(req as Request<{ id: string }, any, any, any>, res);
-      expect(updatePostSpy).toBeCalledWith(ID, post);
+      expect(updatePostSpy).toBeCalledWith(ID, UID, post);
       expect(res.json).toBeCalledWith({
         msg: 'ok',
       });
@@ -258,7 +258,7 @@ describe('postHandler.ts', () => {
       (req as InnerRequest).uid = UID;
       updatePostSpy.mockRejectedValueOnce(null);
       await putPost(req as Request<{ id: string }, any, any, any>, res);
-      expect(updatePostSpy).toBeCalledWith(ID, post);
+      expect(updatePostSpy).toBeCalledWith(ID, UID, post);
       expect(res.status).toBeCalledWith(500);
       expect(res.json).toBeCalledWith({
         msg: 'internal_server_error',

@@ -82,11 +82,14 @@ describe('postRepository.ts', () => {
         authorId: 'aaa',
       };
       prismaMock.post.findMany.mockResolvedValue([EXPECTED]);
-      const actual = await findPosts(params);
+      const actual = await findPosts('uid', params);
       expect(actual).toEqual([EXPECTED]);
       expect(prismaMock.post.findMany).toBeCalledWith({
         where: {
           AND: [
+            {
+              authorId: 'uid',
+            },
             {
               title: params.title,
             },
@@ -108,11 +111,14 @@ describe('postRepository.ts', () => {
         status: PublishStatus.PUBLISHED,
       };
       prismaMock.post.findMany.mockResolvedValue([]);
-      const actual = await findPosts(params);
+      const actual = await findPosts('uid', params);
       expect(actual).toEqual([]);
       expect(prismaMock.post.findMany).toBeCalledWith({
         where: {
           AND: [
+            {
+              authorId: 'uid',
+            },
             {
               title: params.title,
             },
@@ -136,11 +142,14 @@ describe('postRepository.ts', () => {
 
       prismaMock.post.findMany.mockRejectedValue({ msg: 'error' });
       try {
-        await findPosts(params);
+        await findPosts('uid', params);
       } catch (e) {
         expect(prismaMock.post.findMany).toBeCalledWith({
           where: {
             AND: [
+              {
+                authorId: 'uid',
+              },
               {
                 title: params.title,
               },
@@ -216,9 +225,9 @@ describe('postRepository.ts', () => {
         status: PublishStatus.PUBLISHED,
       };
       // prismaMock.post.update.mockResolvedValue({} as any);
-      await updatePost(ID, postUpdateInput);
-      expect(prismaMock.post.update).toBeCalledWith({
-        where: { id: ID },
+      await updatePost(ID, 'uid', postUpdateInput);
+      expect(prismaMock.post.updateMany).toBeCalledWith({
+        where: { id: ID, authorId: 'uid' },
         data: {
           ...postUpdateInput,
         },
@@ -234,10 +243,10 @@ describe('postRepository.ts', () => {
       };
       prismaMock.post.update.mockRejectedValue({ msg: 'error' });
       try {
-        await updatePost(ID, postUpdateInput);
+        await updatePost(ID, 'uid', postUpdateInput);
       } catch (e) {
-        expect(prismaMock.post.update).toBeCalledWith({
-          where: { id: ID },
+        expect(prismaMock.post.updateMany).toBeCalledWith({
+          where: { id: ID, authorId: 'uid' },
           data: {
             ...postUpdateInput,
           },

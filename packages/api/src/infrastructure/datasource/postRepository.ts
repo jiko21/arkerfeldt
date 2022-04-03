@@ -14,10 +14,13 @@ export const findPostById = async (id: number, authorId: string): Promise<Post |
   });
 };
 
-export const findPosts = async (params: PostFilterParam): Promise<Post[]> => {
+export const findPosts = async (authorId: string, params: PostFilterParam): Promise<Post[]> => {
   return await prismaClient.post.findMany({
     where: {
       AND: [
+        {
+          authorId: authorId,
+        },
         {
           title: params.title,
         },
@@ -43,9 +46,12 @@ export const createPost = async (post: PostCreateInput) => {
   }
 };
 
-export const updatePost = async (id: number, postUpdateInput: PostUpdateInput) => {
-  await prismaClient.post.update({
-    where: { id },
+export const updatePost = async (id: number, authorId: string, postUpdateInput: PostUpdateInput) => {
+  await prismaClient.post.updateMany({
+    where: {
+      authorId,
+      id,
+    },
     data: {
       ...postUpdateInput,
     },
