@@ -16,7 +16,7 @@ export const getPosts = async (
 ): Promise<void> => {
   const params = req.query;
   try {
-    const posts = await findPosts(params);
+    const posts = await findPosts((req as unknown as InnerRequest).uid, params);
     res.status(200).json({
       total: posts.length,
       posts,
@@ -82,7 +82,7 @@ export const putPost = async (
   const id = Number(req.params.id);
   const post = req.body;
   try {
-    await updatePost(id, post);
+    await updatePost(id, (req as unknown as InnerRequest).uid, post);
     res.json({
       msg: 'ok',
     });
