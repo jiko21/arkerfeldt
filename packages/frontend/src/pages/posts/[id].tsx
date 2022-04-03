@@ -19,21 +19,31 @@ const EditWrapper: React.FC<{
   onSubmit: (postInput: PostInputType) => Promise<void>;
   id: number;
 }> = ({ id, onSubmit }) => {
-  const { data, isLoading } = useQuery(`posts/${id}`, async () => {
-    const { data } = await getRequest<PostResponse>(`/api/v1/posts/${id}`, {});
-    return data;
-  }, {
-    cacheTime: 0,
-  });
+  const { data, isLoading } = useQuery(
+    `posts/${id}`,
+    async () => {
+      const { data } = await getRequest<PostResponse>(
+        `/api/v1/posts/${id}`,
+        {},
+      );
+      return data;
+    },
+    {
+      cacheTime: 0,
+    },
+  );
   if (isLoading) {
-    return <FontAwesomeIcon
-      icon={faSpinner}
-      color='paleturquoise'
-      size='10x'
-      spin
-    />;
+    return (
+      <FontAwesomeIcon icon={faSpinner} color="paleturquoise" size="10x" spin />
+    );
   } else {
-    return <PostCreateForm initTitle={data?.title} initContent={data?.content} submit={onSubmit} />;
+    return (
+      <PostCreateForm
+        initTitle={data?.title}
+        initContent={data?.content}
+        submit={onSubmit}
+      />
+    );
   }
 };
 
@@ -45,15 +55,14 @@ const Edit: React.FC = () => {
     try {
       await updatePost(Number(id), postInput);
       router.push('/posts');
-    } catch (e) {
-    }
+    } catch (e) {}
   };
 
   return (
     <>
       <Head>
         <title>Arkerfeldt CMS</title>
-        <link rel='icon' href='/favicon.ico' />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <MenuTemplate>
         <EditWrapper onSubmit={onSubmit} id={Number(id)} />

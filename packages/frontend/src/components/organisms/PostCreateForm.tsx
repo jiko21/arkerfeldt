@@ -30,7 +30,11 @@ type Props = {
   submit: (param: PostInputType) => void;
 };
 
-export const PostCreateForm: React.VFC<Props> = ({ submit, initTitle, initContent }) => {
+export const PostCreateForm: React.VFC<Props> = ({
+  submit,
+  initTitle,
+  initContent,
+}) => {
   const [title, setTitle] = useState(initTitle || '');
   const [content, setContent] = useState(initContent || '');
   const flavMd = createFlavMd();
