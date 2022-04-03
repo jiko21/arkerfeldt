@@ -26,16 +26,16 @@ describe('userUsecase.ts', () => {
         authorId: 'aaa',
       };
       jest.spyOn(postRepository, 'findPostById').mockResolvedValueOnce(post);
-      const rslt = await findPostById(id);
-      expect(postRepository.findPostById).toBeCalledWith(id);
+      const rslt = await findPostById(id, 'uid');
+      expect(postRepository.findPostById).toBeCalledWith(id, 'uid');
       expect(rslt).toBe(post);
     });
 
     it('return null when id of post is not found', async () => {
       const id = 1;
       jest.spyOn(postRepository, 'findPostById').mockResolvedValueOnce(null);
-      const rslt = await findPostById(id);
-      expect(postRepository.findPostById).toBeCalledWith(id);
+      const rslt = await findPostById(id, 'uid');
+      expect(postRepository.findPostById).toBeCalledWith(id, 'uid');
       expect(rslt).toBeNull();
     });
 
@@ -43,9 +43,9 @@ describe('userUsecase.ts', () => {
       const id = 1;
       jest.spyOn(postRepository, 'findPostById').mockRejectedValueOnce({ msg: 'error' });
       try {
-        await findPostById(id);
+        await findPostById(id, 'uid');
       } catch (e) {
-        expect(postRepository.findPostById).toBeCalledWith(id);
+        expect(postRepository.findPostById).toBeCalledWith(id, 'uid');
       }
     });
   });

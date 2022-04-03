@@ -111,7 +111,7 @@ describe('postHandler.ts', () => {
       };
       findPostByIdSpy.mockResolvedValueOnce(expected);
       await getPostById(req as Request<{ id: string }, any, any, any>, res);
-      expect(findPostByIdSpy).toBeCalledWith(ID);
+      expect(findPostByIdSpy).toBeCalledWith(ID, UID);
       expect(res.json).toBeCalledWith(expected);
     });
 
@@ -125,7 +125,7 @@ describe('postHandler.ts', () => {
       (req as InnerRequest).uid = UID;
       findPostByIdSpy.mockResolvedValue(null);
       await getPostById(req as Request<{ id: string }, any, any, any>, res);
-      expect(findPostByIdSpy).toBeCalledWith(ID);
+      expect(findPostByIdSpy).toBeCalledWith(ID, UID);
       expect(res.status).toBeCalledWith(404);
       expect(res.json).toBeCalledWith({
         msg: 'not_found',
@@ -142,7 +142,7 @@ describe('postHandler.ts', () => {
       (req as InnerRequest).uid = UID;
       findPostByIdSpy.mockRejectedValue(null);
       await getPostById(req as Request<{ id: string }, any, any, any>, res);
-      expect(findPostByIdSpy).toBeCalledWith(ID);
+      expect(findPostByIdSpy).toBeCalledWith(ID, UID);
       expect(res.status).toBeCalledWith(500);
       expect(res.json).toBeCalledWith({
         msg: 'internal_server_error',

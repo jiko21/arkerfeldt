@@ -4,8 +4,8 @@ import { PostFilterParam } from '../../types/Post';
 import PostCreateInput = Prisma.PostCreateInput;
 import PostUpdateInput = Prisma.PostUpdateInput;
 
-export const findPostById = async (id: number): Promise<Post | null> => {
-  return await postRepository.findPostById(id);
+export const findPostById = async (id: number, authorId: string): Promise<Post | null> => {
+  return await postRepository.findPostById(id, authorId);
 };
 
 export const findPosts = async (params: PostFilterParam): Promise<Post[]> => {

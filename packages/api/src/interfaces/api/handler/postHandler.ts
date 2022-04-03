@@ -34,7 +34,7 @@ export const getPostById = async (
 ): Promise<void> => {
   const id = Number(req.params.id);
   try {
-    const post = await findPostById(id);
+    const post = await findPostById(id, (req as unknown as InnerRequest).uid);
     if (post === null) {
       res.status(404).json({
         msg: 'not_found',
