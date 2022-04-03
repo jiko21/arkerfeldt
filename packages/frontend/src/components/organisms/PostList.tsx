@@ -27,7 +27,7 @@ const PostList: React.FC<Props> = ({ posts }) => {
             onChecked={(value: boolean) => {
               console.log(value);
             }}
-            link={''}
+            link={`/posts/${post.id}`}
           />
         </li>
       ))}
