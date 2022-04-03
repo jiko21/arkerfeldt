@@ -25,12 +25,14 @@ const DisplayedText = styled.div`
 `;
 
 type Props = {
+  initTitle?: string;
+  initContent?: string;
   submit: (param: PostInputType) => void;
 };
 
-export const PostCreateForm: React.VFC<Props> = ({ submit }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+export const PostCreateForm: React.VFC<Props> = ({ submit, initTitle, initContent }) => {
+  const [title, setTitle] = useState(initTitle || '');
+  const [content, setContent] = useState(initContent || '');
   const flavMd = createFlavMd();
   const updateText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
