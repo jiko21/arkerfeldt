@@ -4,27 +4,27 @@ import { User } from './user';
 
 @ObjectType()
 export class Post {
-  @Field((type) => Int)
+  @Field(() => Int)
   id: number;
 
-  @Field((type) => String)
+  @Field(() => String)
   title: string;
 
-  @Field((type) => String)
+  @Field(() => String)
   content: string;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   createdAt: Date;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   updatedAt: Date;
 
-  @Field((type) => Boolean)
+  @Field(() => Boolean)
   isDelete: boolean;
 
-  @Field((type) => String)
+  @Field(() => String)
   status: string;
 
-  @Field((type) => User)
+  @Field(() => User)
   author: User;
 }
