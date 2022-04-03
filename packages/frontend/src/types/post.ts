@@ -14,6 +14,14 @@ export type Post = {
   };
 };
 
+export type PostResponse = Post & {
+  author: {
+    displayName: string;
+    photoUrl: string;
+    uid: string;
+  }
+};
+
 export type PostInputType = {
   title: string;
   content: string;
