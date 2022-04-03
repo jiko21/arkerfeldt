@@ -78,7 +78,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = cookies[authCookie] || '';
   try {
     const user = await firebaseAdmin.auth().verifySessionCookie(session, true);
-    console.log(user);
     return {
       props: {
         user: user,

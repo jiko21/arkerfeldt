@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "lint": "eslint -c .eslintrc.json --fix ./**/*.ts",
+    "lint": "eslint -c .eslintrc.json ./**/*.ts",
+    "lint:fix": "eslint -c .eslintrc.json --fix ./**/*.ts",
     "test": "jest --config jest.config.json --coverage",
     "doc:generate": "swagger-cli bundle -o ./swagger/index.yaml -t yaml ./swagger/api.yaml",
     "prisma:generate": "prisma generate"

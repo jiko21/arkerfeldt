@@ -24,9 +24,8 @@ const PostList: React.FC<Props> = ({ posts }) => {
           <PostItem
             post={post}
             checked={false}
-            onChecked={(value: boolean) => {
-              console.log(value);
-            }}
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            onChecked={() => {}}
             link={`/posts/${post.id}`}
           />
         </li>

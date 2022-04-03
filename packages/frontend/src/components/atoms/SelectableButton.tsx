@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { FC, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Color } from '@/const/color';
 import styled from '@emotion/styled';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -78,7 +78,7 @@ const SelectableButton = <T extends string | symbol>({
 }: Props<T>) => {
   const [value, setValue] = useState(initValue);
 
-  const selectedValue = useMemo(() => candidates[value], [value]);
+  const selectedValue = useMemo(() => candidates[value], [candidates, value]);
 
   const [isSelect, changeSelectStatus] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
