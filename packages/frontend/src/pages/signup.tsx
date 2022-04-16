@@ -6,10 +6,10 @@ import { GetServerSideProps } from 'next';
 import nookies from 'nookies';
 import { authCookie, Provider } from '@/const/auth';
 import firebaseAdmin from '@/server/firebaseAdmin';
-import { useLogin } from '@/hooks/useAuth';
+import { useLogin, useSignup } from '@/hooks/useAuth';
 
-const Home: React.FC = ({}) => {
-  const { onLogin, isError, inProgress } = useLogin();
+const Signup: React.FC = ({}) => {
+  const { onSignup, isError, inProgress } = useSignup();
   return (
     <>
       <Head>
@@ -21,12 +21,11 @@ const Home: React.FC = ({}) => {
           isLoading={inProgress}
           isError={isError}
           onGithubLogin={async () => {
-            await onLogin(Provider.GITHUB);
+            await onSignup(Provider.GITHUB);
           }}
           onEmailLogin={async (loginInfo) => {
-            await onLogin(Provider.EMAIL, loginInfo.email, loginInfo.password);
+            await onSignup(Provider.EMAIL, loginInfo.email, loginInfo.password);
           }}
-          isLogin
         />
       </MenulessTemplate>
     </>
@@ -51,4 +50,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 };
 
-export default Home;
+export default Signup;

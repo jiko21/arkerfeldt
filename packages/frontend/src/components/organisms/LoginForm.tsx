@@ -9,6 +9,7 @@ import { EmailLoginInfo } from '@/types/loginForm';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 const containerStyle = css`
   align-items: center;
@@ -21,11 +22,13 @@ const containerStyle = css`
   width: 300px;
   min-height: 320px;
   padding: 0 40px;
+
   span {
     color: ${Color.BLACK};
     font-size: 18px;
     font-weight: 700;
   }
+
   > * {
     margin: 8px 0;
   }
@@ -37,6 +40,7 @@ const formStyle = css`
   flex-direction: column;
   justify-content: center;
   width: 100%;
+
   > * {
     margin: 4px 0;
   }
@@ -56,14 +60,16 @@ type Props = {
   onGithubLogin: () => void;
   isError: boolean;
   isLoading: boolean;
+  isLogin?: boolean
 };
 
 const LoginForm: FC<Props> = ({
-  onEmailLogin,
-  onGithubLogin,
-  isError,
-  isLoading,
-}) => {
+                                onEmailLogin,
+                                onGithubLogin,
+                                isError,
+                                isLoading,
+                                isLogin,
+                              }) => {
   const [email, onChangeEmail] = useState('');
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeEmail(event.target.value);
@@ -79,34 +85,36 @@ const LoginForm: FC<Props> = ({
       {isLoading ? (
         <FontAwesomeIcon
           icon={faSpinner}
-          color="paleturquoise"
-          size="10x"
+          color='paleturquoise'
+          size='10x'
           spin
         />
       ) : (
         <>
-          <span>You should login to continue</span>
-          <GithubButton onClick={onGithubLogin} testId="github-btn" />
+          <span>You should {isLogin ? 'login' : 'singup'} to continue</span>
+          <GithubButton onClick={onGithubLogin} testId='github-btn' />
           <span>OR</span>
           <div css={formStyle}>
-            <TextForm
-              testId="email"
-              type={'email'}
-              placeholder={'email'}
-              value={email}
-              onChange={handleChangeEmail}
-            />
-            <TextForm
-              testId="password"
-              type={'password'}
-              placeholder={'password'}
-              value={password}
-              onChange={handleChangePassword}
-            />
+            <form>
+              <TextForm
+                testId='email'
+                type={'email'}
+                placeholder={'email'}
+                value={email}
+                onChange={handleChangeEmail}
+              />
+              <TextForm
+                testId='password'
+                type={'password'}
+                placeholder={'password'}
+                value={password}
+                onChange={handleChangePassword}
+              />
+            </form>
           </div>
           <Error>{isError ? 'Sorry... try again.' : ''}</Error>
           <DefaultButton
-            testId="login-btn"
+            testId='login-btn'
             onClick={() => {
               onEmailLogin({
                 email,
@@ -114,8 +122,9 @@ const LoginForm: FC<Props> = ({
               });
             }}
           >
-            Log In
+            {isLogin ? 'Log In' : 'Sign Up'}
           </DefaultButton>
+          {isLogin ? <Link href='/signup'>signup from here</Link> : <Link href='/'>sign in from here</Link>}
         </>
       )}
     </div>
