@@ -10,7 +10,7 @@ export const app = express();
 const SWAGGER_PATH = path.join(__dirname, '../swagger/api.yaml');
 
 app.use(express.json());
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api-docs', serve);
 swaggerCombine(SWAGGER_PATH).then((res) => {

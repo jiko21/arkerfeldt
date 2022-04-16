@@ -3,7 +3,7 @@ import { verifyAndGetUserInfo } from '../../../service/auth/firebaseAuthService'
 import { InnerRequest } from './request';
 import { saveUser } from '../../../application/usercase/userUsecase';
 
-export const saveUserHandler = async (req: Request, res: Response): Promise<void> => {
+export const createUserHandler = async (req: Request, res: Response): Promise<void> => {
   const uid = (req as InnerRequest).uid;
   try {
     const userInfo = await verifyAndGetUserInfo(uid);

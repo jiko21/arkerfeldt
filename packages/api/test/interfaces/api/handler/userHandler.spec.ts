@@ -3,7 +3,7 @@ import { InnerRequest } from '../../../../src/interfaces/api/handler/request';
 import { createMockReq, createMockRes } from '../expressUtil';
 import * as firebaseAuthService from '../../../../src/service/auth/firebaseAuthService';
 import * as userUsecase from '../../../../src/application/usercase/userUsecase';
-import { saveUserHandler } from '../../../../src/interfaces/api/handler/userHandler';
+import { createUserHandler } from '../../../../src/interfaces/api/handler/userHandler';
 
 const saveUserSpy = jest.spyOn(userUsecase, 'saveUser');
 
@@ -26,7 +26,7 @@ describe('userHandler.ts', () => {
         photoURL: 'bb',
       } as Admin.auth.UserRecord);
       saveUserSpy.mockResolvedValueOnce();
-      await saveUserHandler(req, res);
+      await createUserHandler(req, res);
       expect(firebaseAuthService.verifyAndGetUserInfo).toBeCalledWith(UID);
       expect(saveUserSpy).toBeCalledWith({
         uid: UID,
@@ -46,7 +46,7 @@ describe('userHandler.ts', () => {
       (req as InnerRequest).uid = UID;
       jest.spyOn(firebaseAuthService, 'verifyAndGetUserInfo').mockRejectedValueOnce(null);
       saveUserSpy.mockResolvedValueOnce();
-      await saveUserHandler(req, res);
+      await createUserHandler(req, res);
       expect(firebaseAuthService.verifyAndGetUserInfo).toBeCalledWith(UID);
       expect(saveUserSpy).not.toBeCalled();
       expect(res.status).toBeCalledWith(500);
