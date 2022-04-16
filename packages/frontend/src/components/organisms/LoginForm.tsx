@@ -60,16 +60,16 @@ type Props = {
   onGithubLogin: () => void;
   isError: boolean;
   isLoading: boolean;
-  isLogin?: boolean
+  isLogin?: boolean;
 };
 
 const LoginForm: FC<Props> = ({
-                                onEmailLogin,
-                                onGithubLogin,
-                                isError,
-                                isLoading,
-                                isLogin,
-                              }) => {
+  onEmailLogin,
+  onGithubLogin,
+  isError,
+  isLoading,
+  isLogin,
+}) => {
   const [email, onChangeEmail] = useState('');
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeEmail(event.target.value);
@@ -85,26 +85,26 @@ const LoginForm: FC<Props> = ({
       {isLoading ? (
         <FontAwesomeIcon
           icon={faSpinner}
-          color='paleturquoise'
-          size='10x'
+          color="paleturquoise"
+          size="10x"
           spin
         />
       ) : (
         <>
           <span>You should {isLogin ? 'login' : 'singup'} to continue</span>
-          <GithubButton onClick={onGithubLogin} testId='github-btn' />
+          <GithubButton onClick={onGithubLogin} testId="github-btn" />
           <span>OR</span>
           <div css={formStyle}>
             <form>
               <TextForm
-                testId='email'
+                testId="email"
                 type={'email'}
                 placeholder={'email'}
                 value={email}
                 onChange={handleChangeEmail}
               />
               <TextForm
-                testId='password'
+                testId="password"
                 type={'password'}
                 placeholder={'password'}
                 value={password}
@@ -114,7 +114,7 @@ const LoginForm: FC<Props> = ({
           </div>
           <Error>{isError ? 'Sorry... try again.' : ''}</Error>
           <DefaultButton
-            testId='login-btn'
+            testId="login-btn"
             onClick={() => {
               onEmailLogin({
                 email,
@@ -124,7 +124,11 @@ const LoginForm: FC<Props> = ({
           >
             {isLogin ? 'Log In' : 'Sign Up'}
           </DefaultButton>
-          {isLogin ? <Link href='/signup'>signup from here</Link> : <Link href='/'>sign in from here</Link>}
+          {isLogin ? (
+            <Link href="/signup">signup from here</Link>
+          ) : (
+            <Link href="/">sign in from here</Link>
+          )}
         </>
       )}
     </div>

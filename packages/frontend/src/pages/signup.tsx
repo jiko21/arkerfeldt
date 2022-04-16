@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next';
 import nookies from 'nookies';
 import { authCookie, Provider } from '@/const/auth';
 import firebaseAdmin from '@/server/firebaseAdmin';
-import { useLogin, useSignup } from '@/hooks/useAuth';
+import { useSignup } from '@/hooks/useAuth';
 
 const Signup: React.FC = ({}) => {
   const { onSignup, isError, inProgress } = useSignup();
