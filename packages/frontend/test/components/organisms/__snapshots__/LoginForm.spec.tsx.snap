@@ -163,7 +163,9 @@ exports[`CheckBox.tsx should correctly render (with error) 1`] = `
     class="emotion-0"
   >
     <span>
-      You should login to continue
+      You should 
+      singup
+       to continue
     </span>
     <button
       class="emotion-1"
@@ -197,20 +199,22 @@ exports[`CheckBox.tsx should correctly render (with error) 1`] = `
     <div
       class="emotion-4"
     >
-      <input
-        class="emotion-5"
-        data-testid="email"
-        placeholder="email"
-        type="email"
-        value=""
-      />
-      <input
-        class="emotion-5"
-        data-testid="password"
-        placeholder="password"
-        type="password"
-        value=""
-      />
+      <form>
+        <input
+          class="emotion-5"
+          data-testid="email"
+          placeholder="email"
+          type="email"
+          value=""
+        />
+        <input
+          class="emotion-5"
+          data-testid="password"
+          placeholder="password"
+          type="password"
+          value=""
+        />
+      </form>
     </div>
     <div
       class="emotion-7"
@@ -221,8 +225,13 @@ exports[`CheckBox.tsx should correctly render (with error) 1`] = `
       class="emotion-8"
       data-testid="login-btn"
     >
-      Log In
+      Sign Up
     </button>
+    <a
+      href="/"
+    >
+      sign in from here
+    </a>
   </div>
 </div>
 `;
@@ -449,7 +458,9 @@ exports[`CheckBox.tsx should correctly render 1`] = `
     class="emotion-0"
   >
     <span>
-      You should login to continue
+      You should 
+      singup
+       to continue
     </span>
     <button
       class="emotion-1"
@@ -483,20 +494,22 @@ exports[`CheckBox.tsx should correctly render 1`] = `
     <div
       class="emotion-4"
     >
-      <input
-        class="emotion-5"
-        data-testid="email"
-        placeholder="email"
-        type="email"
-        value=""
-      />
-      <input
-        class="emotion-5"
-        data-testid="password"
-        placeholder="password"
-        type="password"
-        value=""
-      />
+      <form>
+        <input
+          class="emotion-5"
+          data-testid="email"
+          placeholder="email"
+          type="email"
+          value=""
+        />
+        <input
+          class="emotion-5"
+          data-testid="password"
+          placeholder="password"
+          type="password"
+          value=""
+        />
+      </form>
     </div>
     <div
       class="emotion-7"
@@ -505,8 +518,13 @@ exports[`CheckBox.tsx should correctly render 1`] = `
       class="emotion-8"
       data-testid="login-btn"
     >
-      Log In
+      Sign Up
     </button>
+    <a
+      href="/"
+    >
+      sign in from here
+    </a>
   </div>
 </div>
 `;
