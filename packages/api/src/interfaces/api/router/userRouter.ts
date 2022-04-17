@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { saveUserHandler } from '../handler/userHandler';
+import { createUserHandler } from '../handler/userHandler';
 import { authMiddleware } from '../middleware/authMiddleware';
 import cors from 'cors';
 
@@ -12,4 +12,4 @@ userRouter.use(
   }),
 );
 userRouter.use(authMiddleware);
-userRouter.post('/', saveUserHandler);
+userRouter.post('/new', createUserHandler);

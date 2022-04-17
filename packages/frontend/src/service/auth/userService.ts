@@ -51,6 +51,28 @@ export const signIn = async (
   });
 };
 
+export const signUp = async (
+  authProvider: Provider,
+  email?: string,
+  password?: string,
+) => {
+  const user = await (async () => {
+    switch (authProvider) {
+      case Provider.GITHUB:
+        const provider = new GithubAuthProvider();
+        return await _signInWithProvider(provider);
+      case Provider.EMAIL:
+        return await _signInWithEmailAndPassword(email!, password!);
+    }
+  })();
+
+  const id = await user.getIdToken();
+
+  return await postRequest('/api/login', {
+    id,
+  });
+};
+
 export const signOut = async (): Promise<void> => {
   await postRequest('/api/logout');
 };
