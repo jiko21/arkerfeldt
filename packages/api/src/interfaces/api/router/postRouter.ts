@@ -8,7 +8,7 @@ import { createPost, getPostById, getPosts, putPost } from '../handler/postHandl
 export const postRouter = Router();
 postRouter.use(
   cors({
-    origin: 'http://localhost:4000',
+    origin: 'http://frontend:4000',
     optionsSuccessStatus: 200,
   }),
 );

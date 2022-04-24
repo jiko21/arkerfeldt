@@ -37,16 +37,16 @@ export const findPosts = async (authorId: string, params: PostFilterParam): Prom
 };
 
 export const createPost = async (post: PostCreateInput) => {
-  try {
-    await prismaClient.post.create({
-      data: post,
-    });
-  } catch (e) {
-    console.log(e);
-  }
+  await prismaClient.post.create({
+    data: post,
+  });
 };
 
-export const updatePost = async (id: number, authorId: string, postUpdateInput: PostUpdateInput) => {
+export const updatePost = async (
+  id: number,
+  authorId: string,
+  postUpdateInput: PostUpdateInput,
+) => {
   await prismaClient.post.updateMany({
     where: {
       authorId,

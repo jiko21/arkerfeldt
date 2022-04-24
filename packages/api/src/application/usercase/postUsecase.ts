@@ -19,6 +19,10 @@ export const savePost = async (post: PostCreateInput): Promise<void> => {
   return await postRepository.createPost(postInput);
 };
 
-export const updatePost = async (id: number, authorId: string, postUpdateInput: PostUpdateInput): Promise<void> => {
+export const updatePost = async (
+  id: number,
+  authorId: string,
+  postUpdateInput: PostUpdateInput,
+): Promise<void> => {
   return await postRepository.updatePost(id, authorId, postUpdateInput);
 };
