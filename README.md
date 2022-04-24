@@ -12,6 +12,11 @@ generate model
 npm run prisma:generate
 ```
 
+push db table
+```bash
+npx prisma db push --schema packages/api/prisma/schema.prisma
+```
+
 ### start server
 ```bash
 npm run dev
