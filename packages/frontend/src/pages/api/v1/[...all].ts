@@ -3,6 +3,10 @@ import httpProxyMiddleware from 'next-http-proxy-middleware';
 import { parseCookies } from 'nookies';
 import { authCookie } from '@/const/auth';
 import firebaseAdmin from '@/server/firebaseAdmin';
+import log4js from 'log4js';
+
+const logger = log4js.getLogger();
+logger.level = 'info';
 
 const proxyApi = async (
   req: NextApiRequest,
@@ -26,6 +30,7 @@ const proxyApi = async (
     });
     return proxy;
   } catch (e) {
+    logger.debug(e);
     return res.status(500);
   }
 };
