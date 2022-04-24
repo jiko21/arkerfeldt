@@ -13,7 +13,8 @@ services:
       TZ: "Asia/Tokyo"
     volumes:
       - postgres:/var/lib/postgresql/data
-
+    profiles:
+      - db
   pgadmin:
     image: dpage/pgadmin4
     restart: always
@@ -24,9 +25,81 @@ services:
       PGADMIN_DEFAULT_PASSWORD: password
     volumes:
       - pgadmin:/var/lib/pgadmin
+    profiles:
+      - db
     depends_on:
       - postgres
-
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      DB_TYPE: ${DB_TYPE}
+      TYPE: ${TYPE}
+      PROJECT_ID: ${PROJECT_ID}
+      PRIVATE_KEY_ID: ${PRIVATE_KEY_ID}
+      PRIVATE_KEY: ${PRIVATE_KEY}
+      CLIENT_EMAIL: ${CLIENT_EMAIL}
+      CLIENT_ID: ${CLIENT_ID}
+      AUTH_URI: ${AUTH_URI}
+      TOKEN_URI: ${TOKEN_URI}
+      AUTH_PROVIDER_X509_CERT_URL: ${AUTH_PROVIDER_X509_CERT_URL}
+      CLIENT_X509_CERT_URL: ${CLIENT_X509_CERT_URL}
+      FIREBASE_DATABASE_URL: ${FIREBASE_DATABASE_URL}
+    depends_on:
+      - postgres
+    profiles:
+      - app
+    command: /bin/bash -c "npm run start --workspace=packages/api"
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    ports:
+      - 4000:4000
+    environment:
+      TYPE: ${TYPE}
+      PROJECT_ID: ${PROJECT_ID}
+      PRIVATE_KEY_ID: ${PRIVATE_KEY_ID}
+      PRIVATE_KEY: ${PRIVATE_KEY}
+      CLIENT_EMAIL: ${CLIENT_EMAIL}
+      CLIENT_ID: ${CLIENT_ID}
+      AUTH_URI: ${AUTH_URI}
+      TOKEN_URI: ${TOKEN_URI}
+      AUTH_PROVIDER_X509_CERT_URL: ${AUTH_PROVIDER_X509_CERT_URL}
+      CLIENT_X509_CERT_URL: ${CLIENT_X509_CERT_URL}
+      FIREBASE_DATABASE_URL: ${FIREBASE_DATABASE_URL}
+      NEXT_PUBLIC_PROJECT_ID: ${NEXT_PUBLIC_PROJECT_ID}
+      NEXT_PUBLIC_API_KEY: ${NEXT_PUBLIC_API_KEY}
+      NEXT_PUBLIC_AUTH_DOMAIN: ${NEXT_PUBLIC_AUTH_DOMAIN}
+      NEXT_PUBLIC_DATABASE_URL: ${NEXT_PUBLIC_DATABASE_URL}
+      NEXT_PUBLIC_STORAGE_BUCKET: ${NEXT_PUBLIC_STORAGE_BUCKET}
+      NEXT_PUBLIC_MESSAGING_SENDER_ID: ${NEXT_PUBLIC_MESSAGING_SENDER_ID}
+      NEXT_PUBLIC_APP_ID: ${NEXT_PUBLIC_APP_ID}
+      NEXT_PUBLIC_MEASUREMENT_ID: ${NEXT_PUBLIC_MEASUREMENT_ID}
+      API_HOST: ${API_HOST}
+    depends_on:
+      - postgres
+      - api
+    profiles:
+      - app
+    command: /bin/bash -c "npm run start --workspace=packages/frontend"
+  public-api:
+    build:
+      context: .
+      dockerfile: ./docker/public-api/Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - postgres
+    profiles:
+      - app
+    command: /bin/bash -c "npm run start --workspace=packages/public-api"
 volumes:
   postgres:
   pgadmin:

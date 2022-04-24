@@ -7,7 +7,7 @@ import cors from 'cors';
 export const userRouter = Router();
 userRouter.use(
   cors({
-    origin: 'http://localhost:4000',
+    origin: 'http://frontend:4000',
     optionsSuccessStatus: 200,
   }),
 );

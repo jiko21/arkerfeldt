@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
+    "clean": "rimraf dist",
+    "start": "node dist/index.js",
+    "build": "tsc",
     "lint": "eslint -c .eslintrc.json ./**/*.ts",
     "lint:fix": "eslint -c .eslintrc.json --fix ./**/*.ts",
     "test": "jest --config jest.config.json --coverage",
@@ -25,6 +28,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.2",
     "firebase-admin": "^9.4.1",
+    "log4js": "^6.4.5",
     "swagger-combine": "^1.4.0",
     "swagger-ui-express": "^4.3.0"
   },

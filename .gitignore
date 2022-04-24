@@ -10,3 +10,5 @@ packages/frontend/storybook-static/
 packages/**/.swc
 packages/api/src/generated/client/query-*
 packages/**/dist/
+.env
+.env.docker
