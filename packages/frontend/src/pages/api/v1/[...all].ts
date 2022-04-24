@@ -30,7 +30,7 @@ const proxyApi = async (
     });
     return proxy;
   } catch (e) {
-    logger.debug(e);
+    logger.error(e);
     return res.status(500);
   }
 };
