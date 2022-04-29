@@ -17,7 +17,7 @@ const serviceAccount = {
 };
 
 const admin =
-  process.env.NODE_ENV !== 'test'
+  !process.browser || process.env.NODE_ENV !== 'test'
     ? Admin.apps[0] ||
       Admin.initializeApp({
         credential: Admin.credential.cert(

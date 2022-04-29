@@ -31,3 +31,14 @@ npm run lint
 ```bash
 npm run test
 ```
+
+### Docker
+#### api
+```
+docker build -f docker/api/Dockerfile -t jiko21/arkerfeldt-admin-api .
+```
+
+#### frontned
+```
+docker build -f docker/frontend/Dockerfile -t jiko21/arkerfeldt-admin-frontend .
+```
