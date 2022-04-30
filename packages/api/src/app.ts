@@ -13,6 +13,8 @@ app.use(express.json());
 app.use('/api/users', userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api-docs', serve);
-swaggerCombine(SWAGGER_PATH).then((res) => {
-  app.get('/api-docs', setup(res));
-});
+if (process.env.NODE_ENV === 'development') {
+  swaggerCombine(SWAGGER_PATH).then((res) => {
+    app.get('/api-docs', setup(res));
+  });
+}
