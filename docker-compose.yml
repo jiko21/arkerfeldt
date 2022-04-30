@@ -15,6 +15,7 @@ services:
       - postgres:/var/lib/postgresql/data
     profiles:
       - db
+      - all
   pgadmin:
     image: dpage/pgadmin4
     restart: always
@@ -27,12 +28,11 @@ services:
       - pgadmin:/var/lib/pgadmin
     profiles:
       - db
+      - all
     depends_on:
       - postgres
   api:
-    build:
-      context: .
-      dockerfile: ./docker/api/Dockerfile
+    image: jiko21/arkerfeldt-admin-api
     ports:
       - 5000:5000
     environment:
@@ -53,11 +53,9 @@ services:
       - postgres
     profiles:
       - app
-    command: /bin/bash -c "npm run start --workspace=packages/api"
+      - all
   frontend:
-    build:
-      context: .
-      dockerfile: ./docker/frontend/Dockerfile
+    image: jiko21/arkerfeldt-admin-frontend
     ports:
       - 4000:4000
     environment:
@@ -86,11 +84,9 @@ services:
       - api
     profiles:
       - app
-    command: /bin/bash -c "npm run start --workspace=packages/frontend"
+      - all
   public-api:
-    build:
-      context: .
-      dockerfile: ./docker/public-api/Dockerfile
+    image: jiko21/arkerfeldt-public-api
     ports:
       - 3000:3000
     environment:
@@ -99,7 +95,7 @@ services:
       - postgres
     profiles:
       - app
-    command: /bin/bash -c "npm run start --workspace=packages/public-api"
+      - all
 volumes:
   postgres:
   pgadmin:
